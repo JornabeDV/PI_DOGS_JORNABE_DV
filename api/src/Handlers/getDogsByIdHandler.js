@@ -1,4 +1,4 @@
-const getDogsById = require ("../Controllers/getDogsById.js");
+const getDogsById = require ("../Controllers/getDogsById");
 
 const getDogsByIdHandler = async (req, res) => {
     const {id} = req.params;

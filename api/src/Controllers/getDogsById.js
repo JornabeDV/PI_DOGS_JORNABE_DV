@@ -1,7 +1,7 @@
 const axios = require ("axios");
 const {API_KEY} = process.env;
 const {Dog} = require("../db");
-const {getDogsMap} = require("./getAllDogs");
+const {getDogsMap} = require ("./getAllDogs.js");
 const URL = "https://api.thedogapi.com/v1/breeds";
 
 const getDogsById = async (id, source) => {

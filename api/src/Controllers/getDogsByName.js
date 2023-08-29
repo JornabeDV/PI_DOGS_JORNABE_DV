@@ -1,7 +1,7 @@
 const axios = require('axios');
-const {getDogsMap} = require ("./getAllDogs");
+const {getDogsMap} = require ("./getAllDogs.js");
 const {API_KEY} = process.env;
-const {Dog} = require ("../db");
+const {Dog} = require ("../db.js");
 const {Op} = require ("sequelize");
 const URL = "https://api.thedogapi.com/v1/breeds";
 
