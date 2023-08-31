@@ -1,6 +1,6 @@
 //1.IMPORTACIÓN DE UN CONTROLLERS.-
 // Se está importando la función getAllTemperaments. Los controladores son módulos que contienen la lógica para manejar solicitudes específicas en una aplicación.-
-const {getAllTemperaments} = require("../Controllers/getAllTemperaments") 
+const getAllTemperaments = require("../Controllers/getAllTemperaments") 
 
 //2.DEFINICIÓN DEL HANDLER(MANEJADOR) DE LA RUTA.-
 // Se define una función getAllTemperamentsHandler que actúa como el manejador para una ruta en particular. Cuando se reciba una solicitud en esta ruta, este manejador se ejecutará.-

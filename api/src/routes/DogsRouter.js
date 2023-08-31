@@ -4,15 +4,15 @@ const getAllDogsHandler = require("../Handlers/getAllDogsHandler");
 const getDogsByIdHandler = require("../Handlers/getDogsByIdHandler");
 const postDogsHandler = require("../Handlers/postDogsHandler");
 const deleteDogsHandler = require("../Handlers/deleteDogsHandler");
+const postDogsValidate = require("../Middlewares/postDogsValidate")
 
 
+DogsRouter.get("/", getAllDogsHandler);
 
-DogsRouter.get("/", getAllDogsHandler)
+DogsRouter.get("/:id", getDogsByIdHandler); // ruta dinámica.
 
-DogsRouter.get("/:id", getDogsByIdHandler) // ruta dinámica.
+DogsRouter.post("/", postDogsValidate, postDogsHandler);
 
-DogsRouter.post("/", postDogsHandler)
-
-DogsRouter.delete('/:id', deleteDogsHandler)
+DogsRouter.delete('/:id', deleteDogsHandler);
 
 module.exports = DogsRouter;

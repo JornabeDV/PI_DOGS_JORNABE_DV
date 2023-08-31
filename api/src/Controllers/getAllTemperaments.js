@@ -1,14 +1,14 @@
 //1.IMPORTS Y CONFIGURACIÓN.-
 const { API_KEY } = process.env; // API_KEY se obtiene del entorno para usarla como clave de acceso a la API externa.-
 const axios = require("axios"); // Se importa la librería axios para hacer solicitudes HTTP.-
-const {Temperament} = require('../db'); // Se importa el modelo Temperament desde el módulo ../db, que es el modelo Sequelize relacionado con los temperamentos en la base de datos.-
+const {Temperaments} = require('../db'); // Se importa el modelo Temperament desde el módulo ../db, que es el modelo Sequelize relacionado con los temperamentos en la base de datos.-
 
 //2.DEFINICIÓN DE LA FUNCIÓN.-
 // Se define una función asincrónica llamada getAllTemperaments.-
 const getAllTemperaments = async () => { 
 
-    //3.OBTENCIÓN DE DATOS DESDE LA API
-    // Se hace una solicitud GET a la API de DOGS para obtener información sobre las razas. La clave de acceso se pasa como un parámetro en la URL.
+    //3.OBTENCIÓN DE DATOS DESDE LA API.-
+    // Se hace una solicitud GET a la API de DOGS para obtener información sobre las razas. La clave de acceso se pasa como un parámetro en la URL.-
     const response = await axios.get( 
         `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
       );
@@ -22,12 +22,11 @@ const getAllTemperaments = async () => {
     .filter((ele) => ele.length > 1); // Se filtran los temperamentos que tienen longitud mayor que 1.-
 
     //5.ELIMINACIÓN DE DUPLICADOS.-
-    const filtro = allTemperaments.filter((ele) => ele); // Se filtran los elementos no nulos del array allTemperaments.-
-    const allTempsFiltered = [...new Set(filtro)]; // Se utilizan sets para eliminar duplicados y obtener un array de temperamentos únicos.
+      const allTempsFiltered = [...new Set(allTemperaments)]; // Se utilizan sets para eliminar duplicados y obtener un array de temperaments únicos.
 
     //6.ALMACENAMIENTO EN LA BASE DE DATOS.-
-    allTempsFiltered.forEach((ele) => { // Se itera a través de los temperamentos únicos.-
-      Temperament.findOrCreate({ // Se intenta encontrar o crear cada uno de ellos en la base de datos utilizando el modelo Temperament.-
+    allTempsFiltered.forEach((ele) => { // Se itera a través de los temperaments únicos.-
+      Temperaments.findOrCreate({ // Se intenta encontrar o crear cada uno de ellos en la base de datos utilizando el modelo Temperament.-
         where: {
           name: ele
         }
@@ -35,7 +34,7 @@ const getAllTemperaments = async () => {
     })
     
     //7.OBTENCIÓN DE TODOS LOS TEMPERAMENTOS DE LA BASE DE DATOS.-
-    const allTemperamentsDataBase = await Temperament.findAll(); //Se realiza una consulta a la base de datos para obtener todos los registros de temperamentos almacenados.-
+    const allTemperamentsDataBase = await Temperaments.findAll(); //Se realiza una consulta a la base de datos para obtener todos los registros de temperamentos almacenados.-
     return allTemperamentsDataBase; // Se devuelve el resultado.-
 
 };

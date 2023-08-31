@@ -3,6 +3,7 @@ const axios = require('axios') // Se importa la librería axios para hacer solic
 const URL = "https://api.thedogapi.com/v1/breeds"; // Se define la URL base de la API de perros.-
 const {API_KEY} = process.env; // La clave de acceso a la API se obtiene del entorno.-
 const {Dog} = require ("../db"); // Se importa el modelo Dog, que es el modelo Sequelize relacionado con los DOGS en la base de datos.-
+const {Temperaments} = require ("../db"); // Se importa el modelo Temperaments, que es el modelo Sequelize relacionado con los DOGS en la base de datos.-
 
 //2.DEFINICIÓN DE LA FUNCIÓN.-
 // Esta función toma un array de objetos de DOGS y lo mapea a un nuevo array donde cada objeto se transforma según las instrucciones dentro de la función de mapeo.
@@ -27,13 +28,21 @@ const getDogsMap = (array) => // Return implícito.-
 //Se define una función asincrónica llamada getAllDogs.-    
 const getAllDogs = async () => {
     //5.OBTENCIÓN DE DOGS DE LA BASE DE DATOS Y DE LA API.-
-    const databaseDogs = await Dog.findAll(); //Se obtienen todos los registros de perros almacenados en la base de datos utilizando el modelo Dog.-
+    const databaseDogs = await Dog.findAll({ //Se obtienen todos los registros de perros almacenados en la base de datos utilizando el modelo Dog.-
+    include: {
+        model: Temperaments,
+        attributes: ["name"],
+        through: {
+            attributes: [],
+        },
+    }});
     const apiDogsRaw = (await axios.get(`${URL}/?api_key=${API_KEY}`)).data // Se realiza una solicitud a la API de DOGS para obtener información sobre las razas utilizando la clave de acceso.-
     const apiDogs = getDogsMap(apiDogsRaw); // Se aplica la función getDogsMap para transformar los datos obtenidos de la API.-
 
     //6.COMBINACIÓN DE DATOS DE LA BASE DE DATOS Y DE LA API.-
     // Se combinan los datos de DOGS obtenidos de la base de datos con los datos de DOGS obtenidos de la API. La función devuelve un array que contiene todos los DOGS disponibles.-
-    return [...databaseDogs, ...apiDogs]
+    return [...apiDogs, ...databaseDogs];// El spread operator desarma los arrays individuales y junta todos los elementos sueltos en un mismo array.-
+    // Si pongo el spread operator estoy haciendo referencia a los elementos del array, no a la array propiamente dicho.-
 };
 
 //7.EXPORTACIÓN DE FUNCIONES.-
