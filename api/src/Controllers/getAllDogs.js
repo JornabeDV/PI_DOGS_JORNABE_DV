@@ -16,8 +16,10 @@ const getDogsMap = (array) => // Return implícito.-
             id: elem.id,
             name: elem.name,
             image: `https://cdn2.thedogapi.com/images/${elem.reference_image_id}.jpg`,
-            height: elem.height.metric,
-            weight: elem.weight.metric,
+            minHeight: parseInt(elem.height.metric.slice(0, 2).trim()),
+            maxHeight: parseInt(elem.height.metric.slice(4).trim()),
+            minWeight: parseInt(elem.weight.metric.slice(0, 2).trim()),
+            maxWeight: parseInt(elem.weight.metric.slice(4).trim()),
             temperament: elem.temperament,
             life_span: elem.life_span,
             created: false

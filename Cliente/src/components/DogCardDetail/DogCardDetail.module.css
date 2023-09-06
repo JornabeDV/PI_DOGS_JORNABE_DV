@@ -1,0 +1,43 @@
+.container {
+  position: absolute;
+  top: 5em;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 450px;
+  align-content: center;
+  margin-top:90px;
+}
+.img {
+  border-radius: 10%;
+  padding: 10px;
+  max-height: 100%;
+
+
+}
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  color: black;
+  background-color: rgba(255, 253, 253, 0.5);
+  border-radius: 10%;
+}
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  width: 50%;
+}
+
+.nameTitle {
+  font-size: 3rem;
+  color: black;
+  text-decoration: underline;
+}
+h1:hover {
+  cursor: default;
+}
