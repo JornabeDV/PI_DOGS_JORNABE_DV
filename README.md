@@ -1,9 +1,8 @@
 ![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
-
+![Alt text](image.png)
 <br />
 
 ## **📌 FRONTEND**
-![Alt text](image.png)
 ![Alt text](image-1.png)
 ![Alt text](image-2.png)
 ![Alt text](image-3.png)
