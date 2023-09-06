@@ -11,12 +11,12 @@ const Landing = () => {
     <div className={style.fullContainer}>
       <DogAnimated />
       <div className={style.container}>
-        <h1 className={style.title}>DOGS APP </h1>
+        <h1 className={style.title}>DOGS APP</h1>
         <h2 className={style.title}>PI-SOY HENRY</h2>
         <h6 className={style.subtitle}>Beja Rosa, Jorge Nahuel</h6>
         <Link to={"/home"}>
           <button className={style.btnAccess}>
-            <span>Click Me! </span>
+            <span>Click Me!</span>
           </button>
         </Link>
       </div>
