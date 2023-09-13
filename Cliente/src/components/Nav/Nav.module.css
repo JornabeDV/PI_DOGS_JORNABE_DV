@@ -8,6 +8,8 @@
   position: fixed;
   top: 0;
   z-index: 10000;
+  padding-top: 15px;
+  box-sizing: content-box;
 }
 .containerBtn {
   display: flex;
@@ -23,6 +25,8 @@
   border: 0.1em solid darkgray;
   border-radius: 5px;
   transition: 200ms;
+  font-family: monospace;
+  font-size: 18px;
 }
 .navBtn:hover {
   cursor: pointer;

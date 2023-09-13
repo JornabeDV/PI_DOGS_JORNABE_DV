@@ -7,7 +7,7 @@ const getDogsByIdHandler = require("../Handlers/getDogsByIdHandler");
 const postDogsHandler = require("../Handlers/postDogsHandler");
 const deleteDogsHandler = require("../Handlers/deleteDogsHandler");
 
-//También se importa un middleware llamado postDogsValidate, que se utiliza para validar los datos enviados en una solicitud POST.
+//También se importa un middleware llamado postDogsValidate, que se utiliza para validar los datos enviados en una solicitud POST.-
 const postDogsValidate = require("../Middlewares/postDogsValidate")
 
 //2.DEFINICIÓN DE RUTAS.-
@@ -19,7 +19,7 @@ DogsRouter.get("/:id", getDogsByIdHandler);//Esta es una ruta dinámica que acep
 
 DogsRouter.post("/", postDogsValidate, postDogsHandler);//Esta ruta se maneja utilizando el middleware postDogsValidate para validar los datos de la solicitud POST. Luego, se utiliza el controlador.-
 
-DogsRouter.delete('/:id', deleteDogsHandler);//Esta es otra ruta dinámica que acepta un parámetro de id. Se utiliza el controlador deleteDogsHandler para eliminar un perro específico de la base de datos.-
+DogsRouter.delete("/:id", deleteDogsHandler);//Esta es otra ruta dinámica que acepta un parámetro de id. Se utiliza el controlador deleteDogsHandler para eliminar un perro específico de la base de datos.-
 
 //3.EXPORTACIÓN DEL ENRUTADOR.-
 //El enrutador DogsRouter se exporta para que pueda ser utilizado en otros módulos de la aplicación principal. Esto permite que las rutas definidas en este enrutador estén disponibles para su uso en la aplicación principal.-

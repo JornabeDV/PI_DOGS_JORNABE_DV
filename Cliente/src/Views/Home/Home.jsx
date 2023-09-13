@@ -3,6 +3,7 @@ import DogsCards from "../../components/DogsCards/DogsCards";
 import { useEffect } from "react";//Es un Hook de React que se utiliza para realizar efectos secundarios en un componente funcional.-
 import { useDispatch } from "react-redux";//Es un Hook proporcionado por react-redux que se utiliza para obtener una función dispatch que permite enviar acciones a la tienda Redux.-
 import { getDogs } from "../../redux/actions";//Acción de Redux que se utiliza para obtener datos relacionados con perros.-
+import Nav from "../../components/Nav/Nav";
 
 //2.DEFINICIÓN DEL COMPONENTE.-
 //Se define un componente funcional llamado Home. Los componentes funcionales son una forma de definir componentes en React.-
@@ -20,6 +21,7 @@ const Home = () => {
   //Se renderiza el componente DogsCards. Esto significa que el componente DogsCards se mostrará en el lugar donde se coloque este componente Home.-
   return (
     <div>
+      {location.pathname !== "/" && <Nav />}
       <DogsCards />
     </div>
   );
@@ -27,6 +29,10 @@ const Home = () => {
 
 //5.EXPORTACIÓN DEL COMPONENTE.-
 export default Home;
+
+//4.RENDERIZACIÓN DEL COMPONENTE.-
+//{location.pathname !== "/" && <Nav />}: Esto es una condición que verifica si la ubicación actual de la página no es la raíz ("/"), en cuyo caso se renderiza el componente.-
+//Nav: se utiliza para la navegación en la aplicación.-
 
 //6.ANÁLISIS DEL CÓDIGO.-
 //Este código representa un componente funcional de React llamado Home que utiliza Redux para obtener datos relacionados con perros y renderiza el componente DogsCards. La acción getDogs se desencadena cuando el componente se monta (gracias al uso de useEffect). El componente DogsCards mostrará las tarjetas de los perros en la interfaz de usuario de la aplicación.-

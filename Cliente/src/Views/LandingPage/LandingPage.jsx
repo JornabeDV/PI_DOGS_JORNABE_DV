@@ -1,5 +1,5 @@
 //1.IMPORTACIÓN DE MÓDULOS Y COMPONENTES.-
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";// Link función que permite direccionar a otro sitio de la web.-
 import style from "./LandingPage.module.css";
 import DogAnimated from "../../components/DogAnimated/DogAnimated";
 
@@ -13,11 +13,8 @@ const Landing = () => {
       <div className={style.container}>
         <h1 className={style.title}>DOGS APP</h1>
         <h2 className={style.title}>PI-SOY HENRY</h2>
-        <h6 className={style.subtitle}>Beja Rosa, Jorge Nahuel</h6>
         <Link to={"/home"}>
-          <button className={style.btnAccess}>
-            <span>Click Me!</span>
-          </button>
+          <button className={style.btn}>Go Home!</button>
         </Link>
       </div>
     </div>

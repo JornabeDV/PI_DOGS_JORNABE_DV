@@ -3,13 +3,14 @@ import axios from "axios";//Se importa Axios para realizar solicitudes HTTP.-
 import style from "./Form.module.css";//Se importan módulos de estilos CSS locales.-
 import { useState, useEffect } from "react";//Se importa el hook useState de React para gestionar el estado del formulario.Se importa useEffect de React, que se utilizará para realizar efectos secundarios en el componente.-
 import { useNavigate } from "react-router-dom";//Se utiliza useNavigate de react-router-dom para navegar a otras rutas después de enviar el formulario.-
-import validate from "./validation";//Se importa una función de validación validate.-
+import validate from "./validation";//Se importa una función de validación.-
 import { useSelector, useDispatch } from "react-redux";//Se importa useSelector y useDispatch de Redux, que se utilizarán para acceder al estado global de Redux y despachar acciones.-
 import { getTemperaments } from "../../redux/actions";//Se importa la acción getTemperaments desde Redux.-
 
 //2.DEFINICIÓN DEL COMPONENTE.-
 const Form = () => {
   const navigate = useNavigate();
+  
   const temperaments = useSelector((state) => state.temperaments).sort(
     function (a, b) {
       if (a < b) return -1;
@@ -25,10 +26,10 @@ const Form = () => {
   //Se inicializa el estado del formulario utilizando el hook useState. Se definen las propiedades del perro y se establecen en valores iniciales en blanco o nulos.-
   const [dogData, setDogData] = useState({
     name: "",
-    height_min: "",
-    height_max: "",
-    weight_min: "",
-    weight_max: "",
+    minHeight: "",
+    maxHeight: "",
+    minWeight: "",
+    maxWeight: "",
     life_span: "",
     temperaments: [],
     image: "",
@@ -64,7 +65,7 @@ const Form = () => {
     });
   }
   //Se utiliza para habilitar o deshabilitar el botón de envío según si hay errores en el formulario.-
-  const btnState = async (err) => {
+  const btnState = (err) => {
     if (Object.keys(err).length === 0) setDisabled(false);
   };
 
@@ -85,11 +86,14 @@ const Form = () => {
   //Navega a la ruta "/home" después de enviar el formulario.-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    await axios
-      .post("http://localhost:3001/dogs", dogData)
-      .then((response) => alert(response.data))
-      .catch((error) => alert(error));
-      navigate.push("/home");
+    try {
+      await axios.post("http://localhost:3001/dogs", dogData);
+      alert("Dog Create!");
+      // Utiliza navigate("/home") para redireccionar a la página de inicio
+      navigate("/home");
+    } catch (error) {
+      alert(error.response.data.errors.join("\n"));
+    }
   };
 
   //7.RENDERIZACIÓN DEL COMPONENTE.-
@@ -98,6 +102,7 @@ const Form = () => {
     <div className={style.container}>
       <form className={style.form} onSubmit={handleSubmit}>
         <div>
+          <h1>Create New Dog</h1>
           <div className={style.containerInput}>
             <label htmlFor="name">Name</label>
             <input
@@ -107,57 +112,57 @@ const Form = () => {
               onChange={handleChange}
               className={errors.name ? style.error : style.success}
             />
-            <span className={errors.name ? style.errorMsj : null}>
+            <p className={errors.name ? style.errorMsj : null}>
               {errors.name}
-            </span>
+            </p>
           </div>
           <div className={style.containerInput}>
             <h4>Heights (cm)</h4>
             <div className={style.heightInput}>
-              <label htmlFor="height_min">Min</label>
+              <label htmlFor="minHeight">Min</label>
               <input
                 type="number"
-                name="height_min"
-                value={dogData.height_min}
+                name="minHeight"
+                value={dogData.minHeight}
                 onChange={handleChange}
                 className={errors.height ? style.error : style.success}
               />
-              <label htmlFor="height_max">Max</label>
+              <label htmlFor="maxHeight">Max</label>
               <input
                 type="number"
-                name="height_max"
-                value={dogData.height_max}
+                name="maxHeight"
+                value={dogData.maxHeight}
                 onChange={handleChange}
                 className={errors.height ? style.error : style.success}
               />
             </div>
-            <span className={errors.height ? style.errorMsj : null}>
+            <p className={errors.height ? style.errorMsj : null}>
               {errors.height}
-            </span>
+            </p>
           </div>
           <div className={style.containerInput}>
             <h4>Weight (kg.)</h4>
             <div className={style.heightInput}>
-              <label htmlFor="weight_min">Min</label>
+              <label htmlFor="minWeight">Min</label>
               <input
                 type="number"
-                name="weight_min"
-                value={dogData.weight_min}
+                name="minWeight"
+                value={dogData.minWeight}
                 onChange={handleChange}
                 className={errors.weight ? style.error : style.success}
               />
-              <label htmlFor="weight_max">Max</label>
+              <label htmlFor="maxWeight">Max</label>
               <input
                 type="number"
-                name="weight_max"
-                value={dogData.weight_max}
+                name="maxWeight"
+                value={dogData.maxWeight}
                 onChange={handleChange}
                 className={errors.weight ? style.error : style.success}
               />
             </div>
-            <span className={errors.weight ? style.errorMsj : null}>
+            <p className={errors.weight ? style.errorMsj : null}>
               {errors.weight}
-            </span>
+            </p>
           </div>
           <div className={style.containerInput}>
             <label htmlFor="life_span">Life Span</label>
@@ -168,9 +173,9 @@ const Form = () => {
               onChange={handleChange}
               className={errors.life_span ? style.error : style.success}
             />
-            <span className={errors.life_span ? style.errorMsj : null}>
+            <p className={errors.life_span ? style.errorMsj : null}>
               {errors.life_span}
-            </span>
+            </p>
           </div>
           <div className={style.containerInput}>
             <label>Temperaments</label>
@@ -185,14 +190,14 @@ const Form = () => {
             </select>
             <div>
               {dogData.temperaments.map((e) => (
-                <div key={e}>
+                <div className={style.tempContainer} key={e}>
                   <button
                     className={style.buttonDelete}
                     onClick={() => handleDelete(e)}
                   >
                     x
                   </button>
-                  <span className={style.spanTemp}>{e}</span>
+                  <p className={style.spanTemp}>{e}</p>
                 </div>
               ))}
             </div>
@@ -207,9 +212,9 @@ const Form = () => {
               onChange={handleChange}
               className={errors.image ? style.error : style.success}
             />
-            <span className={errors.image ? style.errorMsj : null}>
+            <p className={errors.image ? style.errorMsj : null}>
               {errors.image}
-            </span>
+            </p>
           </div>
           <div className={style.containerInput}>
             <button

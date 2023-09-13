@@ -1,5 +1,6 @@
 //1.IMPORTACIÓN DE SEQUELIZE.-
 //Se importa el objeto DataTypes de Sequelize, que se utiliza para definir los tipos de datos que se utilizarán en el modelo.-
+//Funciona como traductor entre Javascript y SQL(lenguaje de la base de datos).-
 const { DataTypes } = require('sequelize');
 
 //2.EXPORTACIÓN DE UNA FUNCIÓN QUE DEFINE EL MODELO.-
@@ -8,7 +9,7 @@ module.exports = (sequelize) => {
  
   //3.DEFINICIÓN DE LAS CARACTERÍSTICAS DEL MODELO DOG.-
   //Se define el modelo dog utilizando la función sequelize.define().-
-    sequelize.define('dog', {
+    sequelize.define('dog', { //Un objeto con sus atributos, los cuales dentro tienen sus propiedades.-
     //id: Un identificador único en formato UUID (Universally Unique Identifier) que se genera automáticamente (defaultValue: DataTypes.UUIDV4) y se utiliza como clave primaria (primaryKey: true).-
     id: {
       type: DataTypes.UUID,
@@ -64,5 +65,5 @@ module.exports = (sequelize) => {
 };
 
 //4.ANÁLISIS DEL CÓDIGO.-
-//Este código define un modelo llamado dog utilizando Sequelize, una librería de JavaScript ampliamente utilizada para interactuar con bases de datos relacionales.-
+//Este código define un modelo llamado dog utilizando Sequelize, una librería de JavaScript ampliamente utilizada para interactuar con bases de datos  relacionales.-
 //Este código define el modelo dog en Sequelize, que representa a los perros y especifica las características de los datos que se almacenan en la tabla de perros en la base de datos. Esto incluye detalles como el nombre, la altura, el peso, la esperanza de vida, etc. Estas características son utilizadas por Sequelize para crear la tabla en la base de datos y facilitar las operaciones de lectura y escritura de datos en esa tabla.-

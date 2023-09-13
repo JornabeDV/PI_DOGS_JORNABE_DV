@@ -1,6 +1,5 @@
 //1.IMPORTACIÓN DE MÓDULOS Y COMPONENTES.-
 import { Route, Routes } from "react-router-dom";//De la biblioteca "react-router-dom" para configurar rutas.-
-import Nav from "../components/Nav/Nav";
 import { Landing, Home, About, Detail, Form } from "../views/index";
 
 //2.DEFINICIÓN DEL COMPONENTE.-
@@ -10,7 +9,6 @@ const App = () => {
   //3.
   return (
     <div>
-          {location.pathname !== "/" && <Nav />}
       <Routes>
         <Route exact path="/" element={<Landing/>} />
         <Route path="/home" element={<Home/>} />

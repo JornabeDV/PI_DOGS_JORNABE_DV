@@ -1,15 +1,81 @@
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    top: 10rem;
-    margin: 0 1em 1em 1em;
-    background-color: rgba(255, 253, 253, 0.7);
-    border-radius: 10px;
-  }
-  .image{
-    width: 200px;
-    border-radius: 0;
-  }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 150px 15% 150px 15%;
+  background-color: rgba(255, 253, 253, 0.7);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: rgba(0, 0, 0, 0.85) 0px 15px 15px;
+}
+.containerSon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.containerLogo {
+  text-align: center;
+}
+
+.tecnoLogo {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+}
+
+.logo {
+  border-radius: 20%;
+  padding: 10px;
+  margin: 0;  
+  align-items: center;
+}
+
+.btnAbout {
+  padding: 1.1em 2em;
+  background: none;
+  border: 2px solid #fff;
+  font-size: 20px;
+  color: #131313;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+  border-radius: 12px;
+  background-color: #ecd448;
+  font-weight: bolder;
+  box-shadow: 0 2px 0 2px #000;
+  font-family: monospace;
+  align-items: center;
+  margin-top: 20px;
+}
+ 
+ .btnAbout:before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 120%;
+  background-color: #ff6700;
+  top: 50%;
+  transform: skewX(30deg) translate(-150%, -50%);
+  transition: all 0.5s;
+ }
+ 
+ .btnAbout:hover {
+  background-color: #4cc9f0;
+  color: #fff;
+  box-shadow: 0 2px 0 2px #0d3b66;
+ }
+ 
+ .btnAbout:hover::before {
+  transform: skewX(30deg) translate(150%, -50%);
+  transition-delay: 0.1s;
+ }
+ 
+ .btnAbout:active {
+  transform: scale(0.9);
+ }
+ 
   

@@ -7,16 +7,15 @@ import { getDogs, getDogsByName } from "../../redux/actions"; //Importa las acti
 //2.DEFINICIÓN DEL COMPONENTE.-
 const SearchBar = () => {
   //3.ESTADO LOCAL Y DISPATCH DE REDUX.-
-  const [dogsByName, setDogsByName] = useState("");//creamos una variable de estado local llamada dogsByName, que almacena el nombre ingresado por el usuario en la barra de búsqueda mediante el uso del Hook useState.-
+  const [dogsByName, setDogsByName] = useState("");//Creamos una variable de estado local llamada dogsByName, que almacena el nombre ingresado por el usuario en la barra de búsqueda mediante el uso del Hook useState.-
   const dispatch = useDispatch();//Creamos una función que utiliza el Hook useDispatch para despachar acciones Redux.-
 
   //4.MANEJO DE CAMBIOS EN LA BARRA DE BÚSQUEDA.-
   //La función handleChange se ejecuta cada vez que el usuario introduce texto en la barra de búsqueda. Actualiza el estado dogsByName con el valor ingresado por el usuario.-
   const handleChange = (event) => {
-    setDogsByName(event.target.value);
+    setDogsByName(event.target.value);  
   };
-  //5.MANEJO DE L BÚSQUEDA.-
-
+  //5.MANEJO DE LA BÚSQUEDA.-
   const handleSearch = () => { //handleSearch se llama cuando el usuario hace clic en el botón "Search".-
     if (dogsByName.length === 0) { //Verifica si el campo de búsqueda (dogsByName) está vacío.-
       dispatch(getDogs()); // Si está vacío, se despacha la acción getDogs para obtener todos los perros.-

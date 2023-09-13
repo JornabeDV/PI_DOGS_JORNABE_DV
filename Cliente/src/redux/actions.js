@@ -1,4 +1,3 @@
-
 //1.IMPORTACIÓN DE AXIOS.-
 import axios from "axios";//Se importa Axios, una biblioteca utilizada para hacer solicitudes HTTP, lo que permite realizar peticiones a una API externa para obtener y enviar datos.
 
@@ -12,6 +11,8 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
 export const FILTER_SOURCE = "FILTER_SOURCE";
 export const FILTER_TEMP = "FILTER_TEMP";
+export const DELETE_DOG = "DELETE_DOG";
+
 
 //3.ACTIONS CREATORS.-
 
@@ -67,10 +68,21 @@ export const orderDogsByWeight = (orderByWeight) => {
 export const filterBySource = (created) => {
   return { type: FILTER_SOURCE, payload: created };
 };
+
 //filterByTemperament: Un creador de acción que toma un valor de filtro por temperamento (temp) y despacha la acción FILTER_TEMP con el valor de filtro por temperamento como carga.-
 export const filterByTemperament = (temp) => {
   return { type: FILTER_TEMP, payload: temp };
 };
 
+//deleteDog:
+export const deleteDog = (id) => {
+  return async (dispatch) => {
+    await axios.delete(`http://localhost:3001/dogs/${id}`);
+    return dispatch ({
+      type: DELETE_DOG,
+      payload: id,
+    })
+  }
+};
 //4.ANÁLISIS DEL CÓDIGO.-
 //Estos creadores de acciones se utilizan en componentes React para despachar acciones que afectan el estado global de Redux y pueden activar cambios en la interfaz de usuario de la aplicación. Las acciones se envían a través del dispatch y son procesadas por los reducers de Redux para actualizar el estado de la aplicación.-

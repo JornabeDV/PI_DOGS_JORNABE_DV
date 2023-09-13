@@ -16,17 +16,17 @@ const validate = (data) => {
     errors.name = "Name is required!";
   }
   //Verifica si alguno de los campos de altura (height_min o height_max) está vacío y agrega un mensaje de error si es así.-
-  if (!data.height_min || !data.height_max) {
+  if (!data.minHeight || !data.maxHeight) {
     errors.height = "Both height values are required!";
   //Verifica si los valores de altura son números positivos. Si no lo son, se agrega un mensaje de error.-
-  } else if (data.height_min <= 0 || data.height_max <= 0) {
+  } else if (data.minHeight <= 0 || data.maxHeight <= 0) {
     errors.height = "Both height values must be positive numbers!";
   }
   //Verifica si alguno de los campos de peso (weight_min o weight_max) está vacío y agrega un mensaje de error si es así.-
-  if (!data.weight_min || !data.weight_max) {
+  if (!data.minWeight || !data.maxWeight) {
     errors.weight = "Both weight values are required!";
   //Verifica si los valores de peso son números positivos. Si no lo son, se agrega un mensaje de error.-
-  } else if (data.weight_min <= 0 || data.weight_max <= 0) {
+  } else if (data.minWeight <= 0 || data.maxWeight <= 0) {
     errors.weight = "Both weight values must be positive numbers!";
   }
   //Verifica si el campo life_span está vacío y agrega un mensaje de error si es así.

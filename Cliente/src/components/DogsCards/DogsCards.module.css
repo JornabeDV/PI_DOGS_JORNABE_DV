@@ -1,13 +1,12 @@
 .container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content:space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   position: relative;
   top: 1em;
   margin-left:5%;
   margin-right: 5%;
+  justify-items: center;
+  margin: 20px;
 }
 
 .containerBtn {
@@ -28,12 +27,14 @@ select {
   margin: 0.5em 0 0.5em 0.5em;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.85) 0px 5px 15px;
 }
 
 span {
   min-width: fit-content;
   margin: 0 0 0 0.5em;
-  font-weight: bold;
+  font-family: monospace;
+  font-size: 18px;
 }
 
 .amountContainer {

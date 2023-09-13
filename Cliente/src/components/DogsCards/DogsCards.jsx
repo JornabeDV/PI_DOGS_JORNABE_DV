@@ -8,6 +8,7 @@ import {
   filterBySource,
   getTemperaments,
   filterByTemperament,
+  deleteDog
 } from "../../redux/actions";//Acciones de Redux.-
 import Pagination from "../Pagination/Pagination";
 import SearchBar from "../SearchBar/SearchBar";
@@ -23,14 +24,23 @@ const DogsCards = () => {
 
   //4.MANEJO DE EVENTOS Y ACCIONES REDUX.-
   //Estas funciones se utilizan para manejar eventos de cambio en los selectores de ordenación y filtro en la interfaz. Cuando se produce un cambio, se despachan acciones Redux correspondientes, como orderDogsByName, orderDogsByWeight, y filterBySource, pasando el valor seleccionado como argumento.-
+  const [filterName, setFilterName] = useState ("");
   const handleOrderByName = (event) => {
     dispatch(orderDogsByName(event.target.value));
+    setFilterName(event.target.value);
+    setCurrentPage(1);
   };
+  const [filterWeight, setFilterWeight] = useState ("");
   const handleOrderByWeight = (event) => {
     dispatch(orderDogsByWeight(event.target.value));
+    setFilterWeight(event.target.value);
+    setCurrentPage(1);
   };
+  const [filterSource, setFilterSource] = useState ("");
   const handleFilterSource = (event) => {
     dispatch(filterBySource(event.target.value));
+    setFilterSource(event.target.value);
+    setCurrentPage(1);
   };
 
   //5.OBTENCIÓN Y ORDENAMIENTO DE TEMPERAMENTOS.-
@@ -45,20 +55,27 @@ const DogsCards = () => {
   //Se utiliza useEffect para realizar una llamada a la acción getTemperaments cuando el componente se monta por primera vez. Esto se hace pasando [dispatch] como segundo argumento, lo que indica que la acción se ejecutará una vez al montar el componente.-
   useEffect(() => {
     dispatch(getTemperaments());
-  }, [dispatch]);
+  }, []);
 
-  //
+  const [filterTemps, setFilterTemps] = useState ("All");
   const handleFilterByTemperament = (event) => {
     dispatch(filterByTemperament(event.target.value));
+    setFilterTemps(event.target.value);
+
   };
-  
+  //ELIMINACIÓN DE CARD DOG.-
+  const handleDeletedDog = (id) => {
+    dispatch(deleteDog(id));
+    setCurrentPage(1);
+  };
+
   //6.CONFIGURACIÓN DE LA PAGINACIÓN.-
   //Aquí se configura la paginación. Se utiliza el estado local currentPage para realizar un seguimiento de la página actual y se calculan el número total de páginas (totalPages) y el rango de perros que se mostrarán en la página actual (currentDogs) en función de la página actual y la cantidad de elementos por página (itemsPerPage).
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
   const totalItems = dogsFilter.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
+  const totalPages = Math.ceil(totalItems / itemsPerPage);//Es una función de JavaScript que redondea hacia arriba un número decimal al número entero más cercano.
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -82,17 +99,17 @@ const DogsCards = () => {
         </div>
         <div className={style.toolsContainer}>
           <span>Order By Name</span>
-          <select onChange={handleOrderByName}>
+          <select onChange={handleOrderByName} value = {filterName} >
             <option value="A">Ascendente</option>
             <option value="D">Descendente</option>
           </select>
           <span>Order By Weight</span>
-          <select onChange={handleOrderByWeight}>
+          <select onChange={handleOrderByWeight} value = {filterWeight} >
             <option value="A">Ascendente</option>
             <option value="D">Descendente</option>
           </select>
           <span>Filter By Source</span>
-          <select onChange={handleFilterSource}>
+          <select onChange={handleFilterSource} value = {filterSource} >
             <option value="All">All</option>
             <option value="false">API</option>
             <option value="true">Postgres</option>
@@ -101,6 +118,7 @@ const DogsCards = () => {
           <select
             className={style.select}
             onChange={(e) => handleFilterByTemperament(e)}
+            value = {filterTemps}
           >
             <option value="All">All</option>
             {temperaments.map((temp) => {
@@ -114,17 +132,32 @@ const DogsCards = () => {
         </div>
       </div>
       <div className={style.container}>
-        {currentDogs.map((dog) => (
+        {currentDogs.map((dog) => {
+          let temperaments;
+
+          if (typeof dog.temperament === "string") {
+            temperaments = dog.temperament
+          } else if (
+            Array.isArray(dog.temperaments) &&
+            dog.temperaments.length > 0
+          ) {
+            temperaments = dog.temperaments.map((t) => t.name).join(", ")
+          } else {
+            temperaments = ""
+          }
+          return (
           <DogCard
             key={dog.id}
             id={dog.id}
             name={dog.name}
-            temperament={dog.temperament}
+            temperament={temperaments}
             minWeight={dog.minWeight} 
             maxWeight={dog.maxWeight} 
             image={dog.image}
+            deleteDog={handleDeletedDog}
           />
-        ))}
+          )
+        })}          
       </div>
       <div className={style.amountContainer}>
           <h3>The number of cards shown are {amount}</h3>

@@ -10,8 +10,8 @@ const path = require('path');//Esta línea importa el módulo path de Node.js. E
 //Se crea una instancia de Sequelize llamada sequelize que se utilizará para interactuar con la base de datos PostgreSQL.-
 //La URL de conexión se construye utilizando las variables de entorno DB_USER, DB_PASSWORD, y DB_HOST para conectarse a la base de datos llamada dogs.-
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/dogs`, {
-  logging: false, //Evita que Sequelize registre las consultas SQL en la consola. Esto es útil en producción para evitar la exposición de información confidencial.-
-  native: false, // Indica que no se utilizará una extensión nativa (como pg-native) para acelerar las consultas.-
+  logging: false,//Evita que Sequelize registre las consultas SQL en la consola. Esto es útil en producción para evitar la exposición de información confidencial.-
+  native: false,// Indica que no se utilizará una extensión nativa (como pg-native) para acelerar las consultas.-
 });
 const basename = path.basename(__filename); //__filename: contiene la ruta completa del archivo actual en el que se ejecuta este código.-
 //path.basename(__filename) toma esa ruta completa y extrae el nombre del archivo actual sin la ruta completa.-
@@ -36,13 +36,13 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-// En sequelize.models están todos los modelos importados como propiedades
-// Le pasamos la instancia de Sequelize 
+//En sequelize.models están todos los modelos importados como propiedades
+//Le pasamos la instancia de Sequelize 
 
-// Para relacionarlos hacemos un destructuring
+//Para relacionarlos hacemos un destructuring
 //6.DEFINICIÓN DE RELACIONES ENTRE MODELOS.-
 //Se definen las relaciones entre los modelos Dog y Temperaments. En este caso, se establece una relación de muchos a muchos utilizando la tabla intermedia "user_dogs" y se deshabilitan los registros de tiempo (timestamps: false).-
-const { Dog, Temperaments } = sequelize.models;// Para relacionarlos hacemos un destructuring.-
+const { Dog, Temperaments } = sequelize.models;//Para relacionarlos hacemos un destructuring.-
 Dog.belongsToMany(Temperaments, {through: "user_dogs", timestamps: false}); // Relacion de muchos a muchos. BELONGSTOMANY.
 Temperaments.belongsToMany(Dog, {through: "user_dogs", timestamps: false});// Relacion de muchos a muchos. BELONGSTOMANY.
 
