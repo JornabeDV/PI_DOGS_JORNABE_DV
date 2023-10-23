@@ -27,5 +27,9 @@
 
 Web creada para mostrar perros de distintas razas, obtenidos a través del consumo de una API web, con búsquedas, filtrados combinados y ordenamientos alternativos. Además se crearon distintos endpoints del backend y diferentes views de la página.
 
+![Landing](https://github.com/JornabeDV/PI_DOGS_JORNABE_DV/assets/103864663/64d414f1-edc6-46a8-81e1-2a555d947127)
+![Home](https://github.com/JornabeDV/PI_DOGS_JORNABE_DV/assets/103864663/7d5ff772-c36e-41ea-88ca-942dab92455f)
+![Form](https://github.com/JornabeDV/PI_DOGS_JORNABE_DV/assets/103864663/76dcc4d7-f354-4aec-a0ab-02d24f0ebcff)
+![About](https://github.com/JornabeDV/PI_DOGS_JORNABE_DV/assets/103864663/42f2cbb8-32d3-4981-aedb-e42cf7236e8a)
 
 
