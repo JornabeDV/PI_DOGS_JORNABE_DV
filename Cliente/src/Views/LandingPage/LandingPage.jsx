@@ -11,8 +11,7 @@ const Landing = () => {
     <div className={style.fullContainer}>
       <DogAnimated />
       <div className={style.container}>
-        <h1 className={style.title}>DOGS APP</h1>
-        <h2 className={style.title}>PI-SOY HENRY</h2>
+        <h1 className={style.title}>DOGS WORLD</h1>
         <Link to={"/home"}>
           <button className={style.btn}>Go Home!</button>
         </Link>

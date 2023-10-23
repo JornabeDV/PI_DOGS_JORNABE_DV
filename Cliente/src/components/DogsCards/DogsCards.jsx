@@ -7,6 +7,7 @@ import {
   orderDogsByWeight,
   filterBySource,
   getTemperaments,
+  orderDogsByLifeSpan,
   filterByTemperament,
   deleteDog
 } from "../../redux/actions";//Acciones de Redux.-
@@ -34,6 +35,12 @@ const DogsCards = () => {
   const handleOrderByWeight = (event) => {
     dispatch(orderDogsByWeight(event.target.value));
     setFilterWeight(event.target.value);
+    setCurrentPage(1);
+  };
+  const [filterLifeSpan, setFilterLifeSpan] = useState ("");
+  const handleOrderLifeSpan = (event) => {
+    dispatch(orderDogsByLifeSpan(event.target.value));
+    setFilterLifeSpan(event.target.value);
     setCurrentPage(1);
   };
   const [filterSource, setFilterSource] = useState ("");
@@ -108,6 +115,11 @@ const DogsCards = () => {
             <option value="A">Ascendente</option>
             <option value="D">Descendente</option>
           </select>
+          <span>Order By LifeSpan</span>
+          <select onChange={handleOrderLifeSpan} value = {filterLifeSpan} >
+            <option value="A">Ascendente</option>
+            <option value="D">Descendente</option>
+          </select>
           <span>Filter By Source</span>
           <select onChange={handleFilterSource} value = {filterSource} >
             <option value="All">All</option>
@@ -153,6 +165,7 @@ const DogsCards = () => {
             temperament={temperaments}
             minWeight={dog.minWeight} 
             maxWeight={dog.maxWeight} 
+            life_span={dog.life_span}
             image={dog.image}
             deleteDog={handleDeletedDog}
           />

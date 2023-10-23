@@ -41,6 +41,7 @@ const validate = (data) => {
   return errors;
 };
 
+
 //4.EXPORTACIÓN LA FUNCIÓN.-
 export default validate;
 

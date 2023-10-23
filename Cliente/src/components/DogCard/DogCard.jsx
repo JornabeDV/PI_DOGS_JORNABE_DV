@@ -5,7 +5,7 @@ import dog404 from "../../Assets/dog404.jpg";
 
 //2.DEFINICIÓN DEL COMPONENTE.-
 //Este es un componente funcional de React llamado DogCard. Recibe varias propiedades como argumentos, incluyendo id, name, temperaments, minWeight, y image. Estas propiedades se utilizan para mostrar información sobre un perro en la tarjeta.-
-const DogCard = ({id, name, temperament, minWeight, maxWeight, image, deleteDog}) => {
+const DogCard = ({id, name, temperament, minWeight, maxWeight, image, deleteDog, life_span}) => {
   return (
     <div className={style.containerCard}>
       {
@@ -17,6 +17,7 @@ const DogCard = ({id, name, temperament, minWeight, maxWeight, image, deleteDog}
         <h2 className={style.name}> { name } </h2>
       </Link>
       <h3>Weight: { minWeight } {' - '} { maxWeight } </h3>
+      <h3>{life_span}</h3>
       <h5> { temperament } </h5>
       <img className={style.img} 
       src={

@@ -15,7 +15,7 @@ const getDogsById = async (id, source) => {//Parámetros vienen del Handler.-
     : await Dog.findByPk(id, {
         include: [{
             model: Temperaments,
-            attributes: ['name'], //atributos que quiero traer del modelo Temperament.-
+            attributes: ['name'],//atributos que quiero traer del modelo Temperament.-
             through: {
                 attributes: [],//traer mediante los atributos del modelo.-
             },

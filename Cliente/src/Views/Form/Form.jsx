@@ -85,7 +85,7 @@ const Form = () => {
   //Muestra una alerta con la respuesta de la solicitud (éxito o error).-
   //Navega a la ruta "/home" después de enviar el formulario.-
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    event.preventDefault();//No puedo actualizar la página hasta completar el form.-
     try {
       await axios.post("http://localhost:3001/dogs", dogData);
       alert("Dog Create!");

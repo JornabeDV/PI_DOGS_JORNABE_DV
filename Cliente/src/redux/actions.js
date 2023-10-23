@@ -9,6 +9,7 @@ export const GET_DOGS_BY_NAME = "GET_DOGS_BY_NAME";
 export const GET_TEMPERAMENTS = "GET_TEMPERAMENTS";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_WEIGHT = "ORDER_BY_WEIGHT";
+export const ORDER_BY_LIFESPAN = "ORDER_BY_LIFESPAN";
 export const FILTER_SOURCE = "FILTER_SOURCE";
 export const FILTER_TEMP = "FILTER_TEMP";
 export const DELETE_DOG = "DELETE_DOG";
@@ -64,6 +65,9 @@ export const orderDogsByWeight = (orderByWeight) => {
   return { type: ORDER_BY_WEIGHT, payload: orderByWeight };
 };
 
+export const orderDogsByLifeSpan = (orderDogsByLifeSpan) => {
+  return { type: ORDER_BY_LIFESPAN, payload: orderDogsByLifeSpan };
+};
 //filterBySource: Un creador de acción que toma un valor de filtro por fuente (created) y despacha la acción FILTER_SOURCE con el valor de filtro por fuente como carga.-
 export const filterBySource = (created) => {
   return { type: FILTER_SOURCE, payload: created };

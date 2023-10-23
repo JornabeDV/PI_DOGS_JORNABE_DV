@@ -10,6 +10,7 @@ import {
   FILTER_SOURCE,
   FILTER_TEMP,
   DELETE_DOG,
+  ORDER_BY_LIFESPAN,
 } from "./actions";
 
 //2.DEFINICIÓN DEL ESTADO INICIAL.-
@@ -82,6 +83,20 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         dogsFilter: sortWeight,
       };
+      case ORDER_BY_LIFESPAN:
+        const sortLifeSpan = [...state.dogsFilter].sort((a, b) => {
+          if (a.life_span !== null && b.life_span !== null) {
+            if (a.life_span > b.life_span) {
+              return action.payload === "A" ? 1 : -1;
+            } else if (a.life_span < b.life_span) {
+              return action.payload === "D" ? 1 : -1;
+            } else return 0;
+          }
+        });
+        return {
+          ...state,
+          dogsFilter: sortLifeSpan,
+        };
 
     case FILTER_SOURCE:
       const filterBySource =

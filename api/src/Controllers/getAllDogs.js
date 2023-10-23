@@ -11,7 +11,7 @@ const getDogsMap = (array) => //Return implícito.- //Esto es un filtro.-
     //3.MAPEO DE DATOS DE DOGS.- 
     //Se mapea cada objeto de DOGS en el array, extrayendo y transformando varios campos, como la URL de la imagen, altura, peso, temperamento, esperanza de vida, etc.- 
     //Un nuevo objeto se crea con estos campos transformados.-
-    array.map((elem) => {//Toma como argumento una función de transformación que se ejecutará en cada elemento del arreglo.-
+    array.map((elem) => {
         if (isNaN(elem.id)) {
             return {
                 id: elem.id,

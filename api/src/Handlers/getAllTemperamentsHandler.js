@@ -4,7 +4,7 @@ const getAllTemperaments = require("../Controllers/getAllTemperaments");
 
 //2.DEFINICIÓN DEL HANDLER(MANEJADOR) DE LA RUTA.-
 //Se define una función getAllTemperamentsHandler que actúa como el manejador para una ruta en particular. Cuando se reciba una solicitud en esta ruta, este manejador se ejecutará.-
-//La función es asíncrona (async) porque probablemente la función getAllTemperaments() también sea asíncrona y debe esperar su resultado.-
+//La función es asíncrona (async), debe esperar su resultado.-
 const getAllTemperamentsHandler = async (req, res) => { 
   try {
        const allTemperaments = await getAllTemperaments();//La función getAllTemperaments() se llama para obtener todos los temperamentos. Esto podría ser una llamada a una base de datos o alguna API externa.-
