@@ -25,7 +25,8 @@
 
 # **DOGS** 
 
-Web creada para mostrar perros de distintas razas, obtenidos a través del consumo de una API web, con búsquedas, filtrados combinados y ordenamientos alternativos. Además se crearon distintos endpoints del backend y diferentes views de la página.
+Website created to show dogs of different breeds, obtained through the consumption of a web API, with searches, combined filtering and alternative ordering. In addition, different backend endpoints and different page views were created.
+Realizada con ReactJS, Javascript, Sequelize, PostgreSQL, Redux, ExpressJS
 
 ![Landing](https://github.com/JornabeDV/PI_DOGS_JORNABE_DV/assets/103864663/64d414f1-edc6-46a8-81e1-2a555d947127)
 ![Home](https://github.com/JornabeDV/PI_DOGS_JORNABE_DV/assets/103864663/7d5ff772-c36e-41ea-88ca-942dab92455f)
